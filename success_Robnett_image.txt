@@ -1,0 +1,19 @@
+CASA <10>: hist
+__rethrow_casa_exceptions=True
+from hifv_importdata_cli import hifv_importdata_cli as hifv_importdata
+from hif_makeimlist_cli import hif_makeimlist_cli as hif_makeimlist
+from hif_editimlist_cli import hif_editimlist_cli as hif_editimlist
+from hif_makeimages_cli import hif_makeimages_cli as hif_makeimages
+import pipeline
+context = h_resume()
+hif_editimlist(parameter_file='testparameter.list')
+context.clean_list_pending
+ls
+hif_makeimages()
+ls
+viewer('foobar.I.iter1.image')
+hist
+
+CASA <11>: pwd
+Out[11]: u'/lustre/naasc/users/jmasters/pipeline_test_data/Robnett/working'
+

@@ -1,0 +1,22 @@
+field='1208459+590224'
+cell=['0.8arcsec']
+intent='TARGET'
+specmode='cont'
+imagename='foobar'
+gridder='standard'
+imsize= [100, 100]
+spw= '0'
+stokes='I'
+spwsel_lsrk={'spw0': ''}
+
+# cell= ['2.8arcsec']
+# field='"5795"'
+# gridder='standard'
+# imagename='something_simple'
+# imsize= [300, 300]
+# intent='TARGET'
+# phasecenter= 'ICRS 12:18:38.8994 +045.46.47.583'
+# specmode= 'cont'
+# spw= '0'
+# stokes= 'I'
+# spwsel_lsrk={'spw0': ''}

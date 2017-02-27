@@ -17,14 +17,16 @@ CASA <2>: eppr.executeppr('PPR_VLAT003.xml', importonly=False)
 ```
 
 A little lower level of abstraction would be to run the pipeline as a series of
-steps as described in the VLA pipeline casaguide:
-https://casaguides.nrao.edu/index.php/VLA_CASA_Pipeline-CASA4.5.3
+steps as described in the VLA pipeline [casaguide](
+https://casaguides.nrao.edu/index.php/VLA_CASA_Pipeline-CASA4.5.3)
 
 At the lowest level of abstraction, we can run the pipeline as a series of steps
 like the following
 
 A pipeline run will generate a file like the following
+```
   pipeline_test_data/VLAT003/working/pipeline-20161014T172229/html/casa_pipescript.py
+ ```
  It contains a series of steps like those described in the casaguide.
 
 We can execute this script from CASA
@@ -86,10 +88,37 @@ CASA <7>: result.accept(context)
 CASA <8>: context.save() 
 ```
 
+If we don't have a PPR or an executable script available.
+
+```
+casa
+import pipeline
+import pipeline.recipes.hifv as hifv
+# the next line will only importevla and save a context, b/c importonly=True
+hifv.hifv(['../rawdata/13A-537.foofoof.eb.barbar.2378.2934723984397'], importonly=True)
+
+context = pipeline.Pipeline(context='last').context
+vis = '13A-537.foofoof.eb.barbar.2378.2934723984397.ms'
+# get the domain object
+m = context.observering_run.get_ms(vis)
+type(m)
+# study this m object for INTENTS
+# <class 'pipeline.domain.measurementset.MeasurementSet>
+m.intents  # shows a python set of the MS intents
+m.polarization  # show a list of polarization objects
+```
+
+To run one of the standard recipes we can use a recipereducer
+
+```
+import pipeline.recipereducer
+pipeline.recipereducer.reduce(vis=['../rawdata/yourasdm'], procedure='procedure_hifv.xml')
+```
+
 Known issues
 
 Don't worry about the following intermittent message at the end of a pipeline run. It's a bug
-  but it doesn't mean the pipeline was unsuccesful.
+  but it doesn't mean the pipeline was unsuccessful.
 
 ```
 invalid command name "102990944filter_destroy"

@@ -5,14 +5,16 @@ Follow these steps to create and test a new pipeline unit test
 1. Get and unpack latest tarball
 
     ```
-    cp /home/casa/distro/linux/test/el6/casa-test-5.0.51.tar.gz .
-    tar xvzf casa-test-5.0.51.tar.gz
+    cd ~/lustre/
+    cp `ls -t /home/casa/distro/linux/test/el6/*.gz | head -1` ./casa-latest.tar.gz
+    mkdir -p ./casa-latest
+    tar xzf casa-latest.tar.gz -C ./casa-latest
     ```
 
 1. Set CASAPATH
 
     ```
-    CASAPATH=`pwd`/casa-test-5.0.51
+    CASAPATH=`pwd`/casa-latest/`ls casa-latest`
     ```
 
 1. Add a new test
